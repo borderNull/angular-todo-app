@@ -18,10 +18,23 @@ export class TodoService {
     this.todos = sourceTodos.map( (todo: Todo) => {
         let item = <Todo>{      
           text: todo.text,
-          completed: todo.completed 
+          completed: todo.completed,
+          important: todo.important 
         };
         return item;
     }); 
+  }
+
+  private getCompletedTodos(completed: Boolean) {
+    return this.todos.filter((todo: Todo) => todo.completed === completed)
+  }
+
+  public getCompleted() {
+    return this.getCompletedTodos(true);
+  }
+
+  public getRemaining() {
+    return this.getCompletedTodos(false);
   }
 
   public addTodo(todo: Todo) {
@@ -40,6 +53,11 @@ export class TodoService {
     this.todos.splice(removedTodo, 1);
     this.updateStorage();
     
+  }
+
+  public toggleImportantTodo(todo: Todo) {
+     todo.important = !todo.important;
+     this.updateStorage();
   }
 
 }

@@ -8,18 +8,12 @@ import {Todo} from '../todo';
   styleUrls: ['./todo-app.component.css']
 })
 export  class TodoAppComponent implements OnInit {
-
-  //@Input('newTodo') newTodo: string;
   private newTodo: Todo = new Todo();
-  // private todos = TodoService;
- 
- 
+
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.getTodos();
-    console.log(this)
-    console.log(this.todoService)
+    this.getTodos();    
   }
 
 
@@ -28,13 +22,16 @@ export  class TodoAppComponent implements OnInit {
   }
 
   addTodo() {
-    console.log(this);
-    this.todoService.addTodo(this.newTodo)
-    this.newTodo = new Todo;
+   this.todoService.addTodo(this.newTodo)
+   this.newTodo = new Todo;
   }
 
   completeTodo(todo) {
     this.todoService.completeTodo(todo);
+  }
+
+  toggleImportant(todo) {
+    this.todoService.toggleImportantTodo(todo);
   }
 
   deleteTodo(todo) {

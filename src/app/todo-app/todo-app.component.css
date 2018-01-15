@@ -1,0 +1,34 @@
+.todo-item.completed {
+    background: #eee;
+}
+
+.todo-item .todo-item__btn-delete,
+.todo-item .todo-item__btn-important {
+   transition: all .3s;
+   visibility:hidden;
+}
+
+.todo-item .todo-item__btn-important.active {
+    visibility:visible;
+}
+
+.todo-item:hover .todo-item__btn-delete,
+.todo-item:hover .todo-item__btn-important {
+    visibility: visible;
+}
+
+.todo-item__text {
+    text-decoration:none;
+    font-size: 24px;
+}
+
+.todo-item__text.completed {
+    text-decoration: line-through;
+}
+
+@media (max-width: 693px) { 
+    .todo-item .todo-item__btn-important {
+        margin-bottom: 10px;
+    }
+ }
+

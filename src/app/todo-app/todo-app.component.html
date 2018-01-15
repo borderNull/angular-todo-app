@@ -1,17 +1,33 @@
 <div  class='container jumbotron'>
-  <p>
-    todo-app works!
-  </p>
-  <input  [(ngModel)]="newTodo.text" (keyup.enter)="addTodo()" />
-  <button (click)='addTodo()'>add todo</button>
-  <div>
-    <ul class="todo-list">
-      <li *ngFor='let todo of todoService.todos'  [class.completed]='todo.completed' class='todo-item'>
-        <input type='checkbox' (click)='completeTodo(todo)' [checked]='todo.completed' />
-        <span [class.completed]='todo.completed'>{{todo.text}}</span>
-        <button (click)='deleteTodo(todo)'>delete todo</button>
-      </li>
-    </ul>
+  <div class="row">
+      <div class="form-group col-md-12">
+          <div class='input-group mb-3'>
+              <input type='text' class='form-control'  [(ngModel)]="newTodo.text" placeholder="Напишите задание..." aria-label="Напишите задание..." aria-describedby="basic-addon2" />
+              <div class='input-group-append'>
+                <button class="btn btn-outline-secondary" type="button" (click)='addTodo()'>Добавить</button>
+              </div>
+            </div>  
+      </div>
+     
+      <div class='mb-3 col-md-12'>
+        <ul class="todo-list list-group ">
+          <li *ngFor='let todo of todoService.todos'  [class.completed]='todo.completed' class='todo-item list-group-item d-flex flex-column flex-md-row flex-lg-row align-items-center'>
+            <input type='checkbox' (click)='completeTodo(todo)' [checked]='todo.completed' class='checkbox-completed mr-4' />
+            <span  class='todo-item__text' [class.completed]='todo.completed'>{{todo.text}}</span>
+            <div class='buttons d-flex flex-column flex-md-row ml-md-auto'>
+                <button type='button' (click)='toggleImportant(todo)' [class.active]='todo.important' class='btn btn-outline-warning btn-sm ml-md-auto mr-md-2 todo-item__btn-important'>Важное задание</button>
+                <button type='button' (click)='deleteTodo(todo)' class='btn btn-outline-danger btn-sm ml-md-auto mr-md-2 todo-item__btn-delete'>Удалить задание</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="results col-md-12">
+        <h3>Статистика заданий</h3>
+        <p>Всего заданий: {{todoService.todos.length}}</p>
+        <p>Выполнено заданий: {{todoService.getCompleted().length}}</p>
+        <p>Не выполнено: {{todoService.getRemaining().length}}</p>
+      </div>
   </div>
-  <div class="jumbotron"></div>
+
 </div>
