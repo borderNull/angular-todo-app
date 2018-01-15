@@ -1,0 +1,17 @@
+<div  class='container jumbotron'>
+  <p>
+    todo-app works!
+  </p>
+  <input  [(ngModel)]="newTodo.text" (keyup.enter)="addTodo()" />
+  <button (click)='addTodo()'>add todo</button>
+  <div>
+    <ul class="todo-list">
+      <li *ngFor='let todo of todoService.todos'  [class.completed]='todo.completed' class='todo-item'>
+        <input type='checkbox' (click)='completeTodo(todo)' [checked]='todo.completed' />
+        <span [class.completed]='todo.completed'>{{todo.text}}</span>
+        <button (click)='deleteTodo(todo)'>delete todo</button>
+      </li>
+    </ul>
+  </div>
+  <div class="jumbotron"></div>
+</div>
